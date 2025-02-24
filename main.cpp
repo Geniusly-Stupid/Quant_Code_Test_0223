@@ -31,7 +31,6 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    // Use a std::map so that output is automatically sorted by symbol (ascending).
     std::map<std::string, TradeStats> symbolStats;
     std::string line;
     while (std::getline(infile, line)) {
@@ -53,7 +52,7 @@ int main(int argc, char* argv[]) {
         std::getline(iss, token, ',');
         int price = std::stoi(token);
 
-        // Update the stats for this symbol.
+        // Update the stats for this symbol
         auto& stats = symbolStats[symbol];
         if (stats.firstTrade) {
             stats.firstTrade = false;
@@ -72,7 +71,7 @@ int main(int argc, char* argv[]) {
     }
     infile.close();
 
-    // Write the output file.
+    // Write the output file
     std::ofstream outfile(argv[2]);
     if (!outfile.is_open()) {
         std::cerr << "Error opening output file: " << argv[2] << "\n";
@@ -80,7 +79,6 @@ int main(int argc, char* argv[]) {
     }
 
     // Output format: <symbol>,<MaxTimeGap>,<Volume>,<WeightedAveragePrice>,<MaxPrice>
-    // WeightedAveragePrice is calculated per unit traded and then truncated.
     for (const auto& [symbol, stats] : symbolStats) {
         int weightedAvgPrice = (stats.volume != 0) ? static_cast<int>(stats.weightedSum / stats.volume) : 0;
         outfile << symbol << ","
