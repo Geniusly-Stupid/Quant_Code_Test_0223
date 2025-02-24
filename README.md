@@ -6,6 +6,9 @@ This repository contains my solution to the Quant Code Test. The project include
 - **Input:** `<TimeStamp>,<Symbol>,<Quantity>,<Price>`
 - **Output:** `<symbol>,<MaxTimeGap>,<Volume>,<WeightedAveragePrice>,<MaxPrice>`
 
+## Run Format
+`$ ./Code_Test <input csv name> <output csv name>`
+
 ## Total Time Spend
 
 - Approximately 40 minutes.
